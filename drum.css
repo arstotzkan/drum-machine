@@ -27,3 +27,37 @@ body{
 .btn:hover{
     background-color: #c3c322;
 }
+
+/*MUST SIMPLIFY*/
+
+.rhythm-button{
+    border: 0;
+    height: 100%;
+    width: 50%; 
+}
+
+.rhythm-button-orangered{
+    background-color: orangered;
+}
+
+.rhythm-button-orange{
+    background-color: orange;
+}
+
+.rhythm-button-yellow{
+    background-color: yellow;
+}
+
+.rhythm-button-white{
+    background-color: #ffffff;
+}
+/*END OF SPAGHETTI */
+
+.gray{
+    background-color: #888888;
+}
+
+input[type=range][orient=vertical]{
+    -webkit-appearance: slider-vertical;
+    height: 4rem;
+}
