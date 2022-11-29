@@ -57,6 +57,10 @@ body{
     background-color: #888888;
 }
 
+.yellow{
+    background-color: #c3c322;
+}
+
 input[type=range][orient=vertical]{
     -webkit-appearance: slider-vertical;
     height: 4rem;
