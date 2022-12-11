@@ -6,6 +6,8 @@
 
         <link rel="stylesheet" href="fake-grid.css">
         <link rel="stylesheet" href="drum.css">
+        <script src="drum.js"></script>
+        <script src="maps.js"></script>
     </head>
 
     <body>
@@ -25,6 +27,7 @@
                 <div class="col-2 flex-col justify-content-end align-content-center">
                     <div class="flex-col justify-content-end align-content-center">
                         <span>INSTRUMENT SELECT</span> 
+                        <span id="temp">AC</span> <!--ADDED THIS HERE SO I CAN SEE THE INSTRUMENT SELECTED -->
                         <input id="instrument-select" type="range" min="1" max="11" value="1" step="1">
                     </div>
 
@@ -233,11 +236,20 @@
                 <div class="col-2 flex-col align-content-center">
                     <div class="flex-col align-content-center">
                         <span>VARIATION</span>
-                        <input type="checkbox" id="variation-checkbox">
+                        <input id="variation-input" class="w-100" type="range" min="1" max="3" value="1" step="1">
                     </div>
                     
-                    <div class="row">
-                        <span>A B LIGHTS</span>
+                    <div class="row flex-col">
+                        <div class="row justify-content-center">
+                            <label for="a-checkbox">A </label>
+                            <label> AB </label>
+                            <label for id="b-checkbox">B</label>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <input type="checkbox" id="a-checkbox">
+                            <input type="checkbox" id="b-checkbox">
+                        </div>
                     </div>
                 </div>
 
@@ -248,10 +260,12 @@
                     </div>
 
                     <div class="col-10 flex-col justify-content-end"> 
-                        <div class="row col-12 gray"> A</div>
-                        <div class="row col-12 gray"> B</div>
-                        <div class="row col-12 gray"> C</div>
-                        <div class="row col-12 gray"> D</div>
+                        <div class="mx-1">
+                            <div class="row col-12 gray"> A</div>
+                            <div class="row col-12 gray"> B</div>
+                            <div class="row col-12 gray"> C</div>
+                            <div class="row col-12 gray"> D</div>
+                        </div>
                     </div>
 
                 </div>
@@ -268,31 +282,118 @@
                 </div>
 
                 <div class="col-1 flex-col justify-content-end">
-                    <span>LIGHT 1</span>
-                    <span>LIGHT 2</span>
+                    <div class="h-50 flex-col justify-content-end">
+                        <input type="checkbox" disabled>
+                        <span>1st PART</span>
+                    </div>
+
+                    <div class="h-50 flex-col justify-content-end">
+                        <input type="checkbox" disabled>
+                        <span>2nd PART</span>
+                    </div>
                 </div>
 
-                <div class="col-8 row">
+                <div class="col-8 row my-1">
                     <div class="col-9 row">
-                        <div class="col-1"><button class="rhythm-button rhythm-button-orangered ">1</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-orangered ">2</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-orangered ">3</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-orangered ">4</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-orange ">5</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-orange ">6</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-orange ">7</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-orange ">8</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-yellow ">9</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-yellow 0">10</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-yellow 1">11</button></div>
-                        <div class="col-1"><button class="rhythm-button rhythm-button-yellow 2">12</button></div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-orangered ">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                1
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-orangered ">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                2
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-orangered ">
+                                <input type="checkbox" class="rhythm-checkbox" >
+                                3
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-orangered ">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                4
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-orange ">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                5
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-orange ">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                6
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-orange ">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                7
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-orange ">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                8
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-yellow ">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                9
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-yellow 0">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                10
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-yellow 1">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                11
+                            </button>
+                        </div>
+                        <div class="col-1">
+                            <button class="rhythm-button rhythm-button-yellow 2">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                12
+                            </button>
+                        </div>
                     </div>                        
 
                     <div class="col-3 row">
-                        <div class="col-3"><button class="rhythm-button rhythm-button-white 3">13</button></div>
-                        <div class="col-3"><button class="rhythm-button rhythm-button-white 4">14</button></div>
-                        <div class="col-3"><button class="rhythm-button rhythm-button-white 5">15</button></div>
-                        <div class="col-3"><button class="rhythm-button rhythm-button-white 6">16</button></div>
+                        <div class="col-3">
+                            <button class="rhythm-button rhythm-button-white 3">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                13
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button class="rhythm-button rhythm-button-white 4">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                14
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button class="rhythm-button rhythm-button-white 5">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                15
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button class="rhythm-button rhythm-button-white 6">
+                                <input type="checkbox" class="rhythm-checkbox">
+                                16
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -302,5 +403,32 @@
             </div>
 
         </div>
+
+        <script>
+
+            var hasStarted = false 
+
+            document.getElementById("start-button").addEventListener("click", toggleDrum)
+
+            for (let btn of document.querySelectorAll(".rhythm-button")){
+                btn.addEventListener("click", function(){
+                    (hasStarted)
+                    ? toggleCheckbox(this)
+                    : event.preventDefault()
+                })
+            }
+
+            for (let cb of document.querySelectorAll(".rhythm-checkbox")){
+                cb.addEventListener("click", function(){
+                    (hasStarted)
+                    ? rhythmCheckboxOnClick(this)
+                    : event.preventDefault()
+                })
+            }
+
+            document.getElementById("instrument-select").addEventListener("change", function(){
+                document.getElementById("temp").textContent = getInstrument(this.value)
+            })
+        </script>
     </body>
 </html>
