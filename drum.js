@@ -43,7 +43,7 @@ function button_lights(){
     toggle_light(0)
 
     function toggle_light(index){
-        let tempo =  1000 - ( 90 * Number(document.getElementById("tempo1").value));
+        let tempo = getTempo();
 
         (index > 0)
         ? cbs[index-1].checked = cbs[index-1].getAttribute("data-checked")
@@ -53,9 +53,10 @@ function button_lights(){
 
         if (cbs[index].getAttribute("data-checked")){
 
-            let selected_instrument = cbs[index].getAttribute("selected-instrument")
-            console.log(getAudioPath(selected_instrument))
+            let selected_instrument = cbs[index].getAttribute("selected-instrument");
+
             let audio = new Audio(getAudioPath(selected_instrument));
+            audio.volume = getVolume();
             audio.play();
         }
 
