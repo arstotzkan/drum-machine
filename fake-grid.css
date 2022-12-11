@@ -110,7 +110,28 @@
     height: 100% !important;
 }
 
-.py-1{
+.px-1{
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.py-1, .pt-1{
+    padding-top: 1rem;
+}
+
+.py-1, .pb-1{
+    padding-bottom: 1rem;
+}
+
+.mx-1{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.my-1, .mt-1{
+    margin-top: 1rem;
+}
+
+.my-1, .mb-1{
+    margin-bottom: 1rem;
 }
