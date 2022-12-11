@@ -42,3 +42,11 @@ function getInstrument(){
 function getAudioPath(instrument){
     return instrumentsToPaths[instrument]
 }
+
+function getVolume(){
+    return (document.getElementById("master-volume").value / 10)
+}
+
+function getTempo(){
+    return 1000 - ( 90 * Number(document.getElementById("tempo1").value));
+}
