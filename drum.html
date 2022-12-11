@@ -6,8 +6,8 @@
 
         <link rel="stylesheet" href="fake-grid.css">
         <link rel="stylesheet" href="drum.css">
-        <script src="drum.js"></script>
         <script src="maps.js"></script>
+        <script src="drum.js"></script>
     </head>
 
     <body>
@@ -227,7 +227,7 @@
 
                 <div class="col-1 flex-col align-content-center justify-content-center">
                     <span>MASTER VOLUME</span>
-                    <input id="master-volume" type="range" min="1" max="11" value="1" step="1">
+                    <input id="master-volume" type="range" min="0" max="10" value="5" step="1">
                 </div>
 
             </div>
@@ -247,8 +247,8 @@
                         </div>
 
                         <div class="row justify-content-center">
-                            <input type="checkbox" id="a-checkbox">
-                            <input type="checkbox" id="b-checkbox">
+                            <input type="checkbox" id="a-checkbox" readonly>
+                            <input type="checkbox" id="b-checkbox" readonly>
                         </div>
                     </div>
                 </div>
