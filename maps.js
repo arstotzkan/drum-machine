@@ -50,3 +50,21 @@ function getVolume(){
 function getTempo(){
     return 1000 - ( 90 * Number(document.getElementById("tempo1").value));
 }
+
+function getBasicVariation(){
+    let values = ["A", "AB", "B"];
+    let key = Number(document.getElementById("variation-input").value) - 1;
+    return values[key];
+}
+
+function getStartingSubBeat(basic_var){
+    return (basic_var === "B")
+    ? "B"
+    : "A"
+}
+
+function getOtherSubBeat(sb){
+    return (sb === "A")
+    ? "B"
+    : "A"
+}
