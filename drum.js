@@ -75,9 +75,30 @@ function button_lights(){
 
             let selected_instrument = cbs[index].getAttribute(`selected-instrument-${subBeat}`);
 
-            let audio = new Audio(getAudioPath(selected_instrument));
-            audio.volume = getVolume();
-            audio.play();
+            // let audio = new Audio(getAudioPath(selected_instrument));
+            // audio.volume = getVolume();
+            // audio.play();
+
+            fetch(getAudioPath(selected_instrument))
+            .then(data => data.arrayBuffer())
+            .then(arrBuffer => drumAudioContext.decodeAudioData(arrBuffer))
+            .then(function(audio){
+                const track = drumAudioContext.createBufferSource();
+                track.buffer = audio;
+
+                const instrumentGainNode = drumAudioContext.createGain();
+                instrumentGainNode.gain.value = getInstrumentVolume(selected_instrument);
+
+                const masterGainNode = drumAudioContext.createGain();
+                masterGainNode.gain.value = getVolume();
+
+                track.connect(instrumentGainNode)
+                .connect(masterGainNode)
+                .connect(drumAudioContext.destination);
+                
+                track.start();
+
+            })
         }
 
         (cbs[index + 1])
