@@ -42,62 +42,62 @@
                     <div class="row col-12">
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="AC-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="AC-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="BD-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="BD-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="SD-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="SD-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="LC-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="LC-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="MC-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="MC-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="HC-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="HC-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="CL-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="CL-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="MA-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="MA-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="CB-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="CB-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="CY-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="CY-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="OH-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="OH-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
-                            <input id="CH-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                            <input id="CH-level" class="w-100" type="range" min="0" max="10" value="5" step="1">
                         </div>
                     </div>
 
@@ -125,7 +125,7 @@
 
                             <div class="flex-col justify-content-end align-content-center">
                                 <span>TONE</span>
-                                <input id="SD-level" class="w-100" type="range" min="1" max="11" value="1" step="1">
+                                <input id="SD-tone" class="w-100" type="range" min="1" max="11" value="1" step="1">
                             </div>
                             
                             <div class="flex-col justify-content-end align-content-center">
@@ -405,6 +405,7 @@
         </div>
 
         <script>
+            const drumAudioContext = new (window.AudioContext || window.webkitAudioContext)();
 
             var hasStarted = false 
 
