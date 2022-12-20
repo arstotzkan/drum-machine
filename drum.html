@@ -6,8 +6,9 @@
 
         <link rel="stylesheet" href="fake-grid.css">
         <link rel="stylesheet" href="drum.css">
-        <script src="maps.js"></script>
+        <script src="instruments.js"></script>
         <script src="drum.js"></script>
+        <script src="drumConfig.js"></script>
     </head>
 
     <body>
@@ -222,7 +223,7 @@
                 </div>
 
                 <div class="col-8 drum-header" >
-                    <h2>KHARNITAS 2022 MACHINE</h2>
+                    <h2>KHARNITAS 2022MACHINE</h2>
                 </div>
 
                 <div class="col-1 flex-col align-content-center justify-content-center">
@@ -297,73 +298,73 @@
                     <div class="col-9 row">
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-orangered ">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="1">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="0">
                                 1
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-orangered ">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="2">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="1">
                                 2
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-orangered ">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="3">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="2">
                                 3
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-orangered " >
-                                <input type="checkbox" class="rhythm-checkbox" data-position="4">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="3">
                                 4
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-orange ">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="5">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="4">
                                 5
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-orange ">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="6">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="5">
                                 6
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-orange ">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="7">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="6">
                                 7
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-orange ">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="8">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="7">
                                 8
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-yellow ">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="9">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="8">
                                 9
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-yellow 0">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="10">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="9">
                                 10
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-yellow 1">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="11">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="10">
                                 11
                             </button>
                         </div>
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-yellow 2">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="12">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="11">
                                 12
                             </button>
                         </div>
@@ -372,25 +373,25 @@
                     <div class="col-3 row">
                         <div class="col-3">
                             <button class="rhythm-button rhythm-button-white 3">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="13">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="12">
                                 13
                             </button>
                         </div>
                         <div class="col-3">
                             <button class="rhythm-button rhythm-button-white 4">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="14">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="13">
                                 14
                             </button>
                         </div>
                         <div class="col-3">
                             <button class="rhythm-button rhythm-button-white 5">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="15">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="14">
                                 15
                             </button>
                         </div>
                         <div class="col-3">
                             <button class="rhythm-button rhythm-button-white 6">
-                                <input type="checkbox" class="rhythm-checkbox" data-position="16">
+                                <input type="checkbox" class="rhythm-checkbox" data-position="15">
                                 16
                             </button>
                         </div>
@@ -407,29 +408,45 @@
         <script>
             const drumAudioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-            var hasStarted = false 
+            //EVENT LISTENERS
+            //MANY EVENT LISTENERS
 
-            document.getElementById("start-button").addEventListener("click", toggleDrum)
+            document.getElementById("start-button").addEventListener("click", toggleDrum) //starting drum
 
-            for (let btn of document.querySelectorAll(".rhythm-button")){
+            for (let btn of document.querySelectorAll(".rhythm-button")){ //toggling checboxes
                 btn.addEventListener("click", function(){
-                    (hasStarted)
-                    ? toggleCheckbox(this)
+                    (MACHINE.hasStarted)
+                    ? toggleCheckboxByButton(this)
                     : event.preventDefault()
                 })
             }
 
-            for (let cb of document.querySelectorAll(".rhythm-checkbox")){
+            for (let cb of document.querySelectorAll(".rhythm-checkbox")){ //toggling checboxes
                 cb.addEventListener("click", function(){
-                    (hasStarted)
+                    (MACHINE.hasStarted)
                     ? rhythmCheckboxOnClick(this)
                     : event.preventDefault()
                 })
             }
 
-            document.getElementById("instrument-select").addEventListener("change", function(){
-                document.getElementById("temp").textContent = getInstrument(this.value)
+            document.getElementById("tempo1").addEventListener("change", function(){ //set tempo
+               MACHINE.setTempo(this.value)
             })
+
+            document.getElementById("master-volume").addEventListener("change", function(){ //set master volume
+               MACHINE.setMasterVolume(this.value)
+            })
+
+            document.getElementById("variation-input").addEventListener("change", function(){ //set variation
+               MACHINE.setBasicVariation(this.value)
+            })
+
+            document.getElementById("instrument-select").addEventListener("change", function(){ //set variation
+                INSTRUMENT_CONTROLLER.setCurrentInstrument(this.value)
+                document.getElementById("temp").textContent = INSTRUMENT_CONTROLLER.getCurrentInstrument().name
+            })
+            
+
         </script>
     </body>
 </html>
