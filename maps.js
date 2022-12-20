@@ -1,17 +1,14 @@
-let valsToInstruments = [
-    "AC",
-    "BD",
-    "SD",
-    "LT",
-    "MT",
-    "HT",
-    "RS",
-    "CP",
-    "CB",
-    "CY",
-    "OH",
-    "CH"
-]
+const instrumentsInButtons = {
+    "A" : [[],[],[],[],
+    [],[],[],[],
+    [],[],[],[],
+    [],[],[],[],],
+
+    "B" : [[],[],[],[],
+    [],[],[],[],
+    [],[],[],[],
+    [],[],[],[],]
+} //PRIMITIVE WAY I KNOW 
 
 let instrumentsToPaths = {
     "AC": "",
@@ -34,7 +31,37 @@ let instrumentsToPaths = {
     "CL": "TR808WAV/CL/CL.WAV",
 }
 
+let instrumentsToVolumeControls = {
+    "AC": "AC-level",
+    "BD": "BD-level",
+    "SD": "SD-level",
+    "LT": "LC-level",
+    "MT": "MC-level",
+    "HT": "HC-level",
+    "RS": "CL-level",
+    "CP": "MA-level",
+    "CB": "CB-level",
+    "CY": "CY-level",
+    "OH": "OH-level",
+    "CH": "CH-level",
+}
+
 function getInstrument(){
+    let valsToInstruments = [
+        "AC",
+        "BD",
+        "SD",
+        "LT",
+        "MT",
+        "HT",
+        "RS",
+        "CP",
+        "CB",
+        "CY",
+        "OH",
+        "CH"
+    ]
+
     let inputVal = document.getElementById("instrument-select").value;
     return valsToInstruments[inputVal];
 }
@@ -48,8 +75,9 @@ function getVolume(){
 }
 
 function getInstrumentVolume(instrument){
-    let instrementLevel = document.getElementById(`${instrument}-level`);
-    return (instrementLevel.value / 10)
+    console.log(instrument, "tata");
+    let instrumentLevel = document.getElementById(instrumentsToVolumeControls[instrument]);
+    return (instrumentLevel.value / 10)
 }
 
 function getTempo(){
