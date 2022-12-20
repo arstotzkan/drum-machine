@@ -11,6 +11,7 @@ const instrumentsInButtons = {
 } //PRIMITIVE WAY I KNOW, WIP
 
 const MACHINE = {
+    //all values are the default ones
     hasStarted : false, //obvious
 
     toggle_light_timeout: undefined, //this exists only to be able to kill the MACHINE
