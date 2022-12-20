@@ -223,7 +223,7 @@
                 </div>
 
                 <div class="col-8 drum-header" >
-                    <h2>KHARNITAS 2022MACHINE</h2>
+                    <h2>KHARNITAS 2022 MACHINE</h2>
                 </div>
 
                 <div class="col-1 flex-col align-content-center justify-content-center">
@@ -444,6 +444,12 @@
             document.getElementById("instrument-select").addEventListener("change", function(){ //set variation
                 INSTRUMENT_CONTROLLER.setCurrentInstrument(this.value)
                 document.getElementById("temp").textContent = INSTRUMENT_CONTROLLER.getCurrentInstrument().name
+
+                for (let cb of document.querySelectorAll(".rhythm-checkbox")){
+                    let position = cb.getAttribute("data-position")
+                    cb.checked = (instrumentsInButtons[MACHINE.subBeat][position].includes(this.value));
+                }
+                    
             })
             
             MACHINE.setTempo(document.getElementById("tempo1").value); //machine set up

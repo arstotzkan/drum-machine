@@ -13,11 +13,7 @@ function rhythmCheckboxOnClick(rhythm_checkbox){
     ? instrumentsInButtons[MACHINE.subBeat][index] = instrumentsInButtons[MACHINE.subBeat][index].filter(val => val !== INSTRUMENT_CONTROLLER.currentInstrumentIndex) //remove from instrument list
     : instrumentsInButtons[MACHINE.subBeat][index].push(INSTRUMENT_CONTROLLER.currentInstrumentIndex); //add to instrument list
 
-    (instrumentsInButtons[MACHINE.subBeat][index].length) //if there are any instruments saved in the position 
-    ? rhythm_checkbox.setAttribute(`data-checked-${MACHINE.subBeat}`, rhythm_checkbox.checked) //checkbox is ticked
-    : rhythm_checkbox.removeAttribute(`data-checked-${MACHINE.subBeat}`); //otherwise it is not
-    
-    rhythm_checkbox.checked = (instrumentsInButtons[MACHINE.subBeat][index].length > 0)
+    rhythm_checkbox.checked = (instrumentsInButtons[MACHINE.subBeat][index].includes(INSTRUMENT_CONTROLLER.currentInstrumentIndex))
 }
 
 //DRUM ONLY STUFF FROM NOW ONWARDS
@@ -39,7 +35,7 @@ function stop_drum(){
     MACHINE.killMachine();
 
     for (let cb of document.querySelectorAll(".rhythm-checkbox")){
-        cb.checked = cb.getAttribute(`data-checked-${MACHINE.subBeat}`); //return buttons to original state
+        cb.checked = false; //return buttons to original state
     }
 }
 
@@ -48,11 +44,10 @@ function circle_lights(){
     toggle_light(0) //we begin from first button 
 
     function toggle_light(index){
-
         if (index > 0) //if the circle has not yet ended
-            cbs[index-1].checked = cbs[index-1].getAttribute(`data-checked-${MACHINE.subBeat}`) //we leave the previous button on its "normal" state
+            cbs[index-1].checked = (instrumentsInButtons[MACHINE.subBeat][index - 1].includes(INSTRUMENT_CONTROLLER.currentInstrumentIndex)) //we leave the previous button on its "normal" state
         else{
-            cbs[15].checked = cbs[15].getAttribute(`data-checked-${MACHINE.subBeat}`); //we leave the last button on its "normal" state
+            cbs[15].checked = (instrumentsInButtons[MACHINE.subBeat][15].includes(INSTRUMENT_CONTROLLER.currentInstrumentIndex)); //we leave the last button on its "normal" state
 
             if (MACHINE.basicVariation === "AB"){
                 //change variation
@@ -60,7 +55,7 @@ function circle_lights(){
 
                 //set up checkboxes according to the new subbeat
                 for (let cb of cbs)
-                    cb.checked = cb.getAttribute(`data-checked-${MACHINE.subBeat}`);
+                    cb.checked = (instrumentsInButtons[MACHINE.subBeat][index].includes(INSTRUMENT_CONTROLLER.currentInstrumentIndex))
             }
     
         }
@@ -70,7 +65,7 @@ function circle_lights(){
         
         cbs[index].checked = true; //this is the button whose samples we will play
 
-        if (cbs[index].getAttribute(`data-checked-${MACHINE.subBeat}`)){ //if there are instruments that have to be played here
+        if (instrumentsInButtons[MACHINE.subBeat][index].length){ //if there are instruments that have to be played here
             let promises = [] //here we put the requests for the samples
 
             for (let instrumentIndex of instrumentsInButtons[MACHINE.subBeat][index]){
