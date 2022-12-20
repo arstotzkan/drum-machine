@@ -9,14 +9,14 @@ function toggleCheckboxByButton(rhythm_button){
 function rhythmCheckboxOnClick(rhythm_checkbox){
     let index = Number(rhythm_checkbox.getAttribute("data-position")); //position in the array where we store which instruements should be playes
 
-    (INSTRUMENT_CONTROLLER.getCurrentInstrument() in instrumentsInButtons[MACHINE.subBeat][index]) //if instrument is already played in the button
-    ? instrumentsInButtons[MACHINE.subBeat][index] = instrumentsInButtons[MACHINE.subBeat][index].filter(val => val !== INSTRUMENT_CONTROLLER.getCurrentInstrument()) //remove from instrument list
-    : instrumentsInButtons[MACHINE.subBeat][index].push(INSTRUMENT_CONTROLLER.getCurrentInstrument()); //add to instrument list
+    (instrumentsInButtons[MACHINE.subBeat][index].includes(INSTRUMENT_CONTROLLER.currentInstrumentIndex)) //if instrument is already played in the button
+    ? instrumentsInButtons[MACHINE.subBeat][index] = instrumentsInButtons[MACHINE.subBeat][index].filter(val => val !== INSTRUMENT_CONTROLLER.currentInstrumentIndex) //remove from instrument list
+    : instrumentsInButtons[MACHINE.subBeat][index].push(INSTRUMENT_CONTROLLER.currentInstrumentIndex); //add to instrument list
 
     (instrumentsInButtons[MACHINE.subBeat][index].length) //if there are any instruments saved in the position 
     ? rhythm_checkbox.setAttribute(`data-checked-${MACHINE.subBeat}`, rhythm_checkbox.checked) //checkbox is ticked
     : rhythm_checkbox.removeAttribute(`data-checked-${MACHINE.subBeat}`); //otherwise it is not
-
+    
     rhythm_checkbox.checked = (instrumentsInButtons[MACHINE.subBeat][index].length > 0)
 }
 
@@ -73,8 +73,11 @@ function circle_lights(){
         if (cbs[index].getAttribute(`data-checked-${MACHINE.subBeat}`)){ //if there are instruments that have to be played here
             let promises = [] //here we put the requests for the samples
 
-            for (let instrument of instrumentsInButtons[MACHINE.subBeat][index])
-                promises.push(fetch(instrument.path)); //we put a fetch request for each instrument
+            for (let instrumentIndex of instrumentsInButtons[MACHINE.subBeat][index]){
+                let correspondingInstrument = INSTRUMENT_CONTROLLER.getInstrumentFromIndex(instrumentIndex)
+                promises.push(fetch(correspondingInstrument.path)); //we put a fetch request for each instrument
+            }
+                
 
             Promise.all(promises) //THE FOLLOWING CODE NEEDS *SOME* REFACTORING
                 /*we need thens because each part of the code returns promises */
@@ -104,7 +107,8 @@ function circle_lights(){
 
                         for (let audioIndex in audioSamples){
 
-                            let instrument = instrumentsInButtons[MACHINE.subBeat][index][audioIndex] //WIP, we get instrument
+                            let instrumentIndex = instrumentsInButtons[MACHINE.subBeat][index][audioIndex] //WIP, we get instrument
+                            let instrument = INSTRUMENT_CONTROLLER.getInstrumentFromIndex(instrumentIndex);
 
                             let audio = audioSamples[audioIndex]; //specific piece
                             let track = drumAudioContext.createBufferSource(); //we create the track that will be played

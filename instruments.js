@@ -109,7 +109,8 @@ const INSTRUMENT_CONTROLLER = {
 
     currentInstrumentIndex: 2, //current instrument selected
     setCurrentInstrument: function (value){this.currentInstrumentIndex = value;},
-    getCurrentInstrument: function(){return this.instruments[this.currentInstrumentIndex];} //returns the instrument object from the array
+    getCurrentInstrument: function(){return this.instruments[this.currentInstrumentIndex];}, //returns the instrument object from the array
+    getInstrumentFromIndex: function(index){return this.instruments[index];}
 }
 
 function _getInstrumentVolume(instrumentVolumeControl){ //helper private function
