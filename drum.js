@@ -37,6 +37,12 @@ function stop_drum(){
     for (let cb of document.querySelectorAll(".rhythm-checkbox")){
         cb.checked = false; //return buttons to original state
     }
+
+    for (let attr in instrumentsInButtons){//maybe we could move this to the reset button once that is made
+        for (let inst in instrumentsInButtons[attr]){
+            instrumentsInButtons[attr][inst] = [];
+        }
+    }
 }
 
 function circle_lights(){
