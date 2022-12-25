@@ -50,6 +50,9 @@ function circle_lights(){
     toggle_light(0) //we begin from first button 
 
     function toggle_light(index){
+
+        MACHINE.currentButtonIndex = index;
+
         if (index > 0) //if the circle has not yet ended
             cbs[index-1].checked = (instrumentsInButtons[MACHINE.subBeat][index - 1].includes(INSTRUMENT_CONTROLLER.currentInstrumentIndex)) //we leave the previous button on its "normal" state
         else{
@@ -72,63 +75,7 @@ function circle_lights(){
         cbs[index].checked = true; //this is the button whose samples we will play
 
         if (instrumentsInButtons[MACHINE.subBeat][index].length){ //if there are instruments that have to be played here
-            let promises = [] //here we put the requests for the samples
-
-            for (let instrumentIndex of instrumentsInButtons[MACHINE.subBeat][index]){
-                let correspondingInstrument = INSTRUMENT_CONTROLLER.getInstrumentFromIndex(instrumentIndex)
-                promises.push(fetch(correspondingInstrument.path)); //we put a fetch request for each instrument
-            }
-                
-
-            Promise.all(promises) //THE FOLLOWING CODE NEEDS *SOME* REFACTORING
-                /*we need thens because each part of the code returns promises */
-                .then(
-                    //we turn the audio files to buffers
-                    (data) => {
-                        let buffers = [];
-                        for (let datum of data)
-                            buffers.push(datum.arrayBuffer());
-                        return Promise.all(buffers);
-                    }
-                ).then(
-                    //we decode the buffers
-                    (buffers) => {
-                        let samples = [];
-                        for (let buffer of buffers)
-                            samples.push(drumAudioContext.decodeAudioData(buffer))
-                        return Promise.all(samples);
-                    }
-                ).then(
-                    //we play the sounds
-                    (audioSamples) => {
-                        const masterGainNode = drumAudioContext.createGain(); //master gain node
-                        masterGainNode.gain.value =MACHINE.masterVolume; //we set master volume here
-
-                        let sample_nodes = []
-
-                        for (let audioIndex in audioSamples){
-
-                            let instrumentIndex = instrumentsInButtons[MACHINE.subBeat][index][audioIndex] //WIP, we get instrument
-                            let instrument = INSTRUMENT_CONTROLLER.getInstrumentFromIndex(instrumentIndex);
-
-                            let audio = audioSamples[audioIndex]; //specific piece
-                            let track = drumAudioContext.createBufferSource(); //we create the track that will be played
-                            track.buffer = audio;
-
-                            let instrumentGainNode = drumAudioContext.createGain(); //instrument gain mode
-                            instrumentGainNode.gain.value = instrument.getVolume(); //we set instrument volume here
-
-                            track.connect(instrumentGainNode) //putting instrument gain mode in front of track
-                            instrumentGainNode.connect(masterGainNode); //putting masternode in front of instrument node 
-                            sample_nodes.push(track); //push to sample_node
-                        }
-
-                        masterGainNode.connect(drumAudioContext.destination); //connect to audio context
-
-                        for (let beat of sample_nodes)
-                            beat.start(); //playing every sample node at the same time, WIP
-                    }
-                )
+            playButtonSound(index);
         }
 
        MACHINE.toggle_light_timeout = 
@@ -136,6 +83,66 @@ function circle_lights(){
         ? setTimeout(toggle_light, MACHINE.tempo, index + 1)//we continue to the next one
         : setTimeout(toggle_light, MACHINE.tempo, 0); //we start from the beggining
     }
+}
+
+function playButtonSound(index){
+    let promises = [] //here we put the requests for the samples
+
+    for (let instrumentIndex of instrumentsInButtons[MACHINE.subBeat][index]){
+        let correspondingInstrument = INSTRUMENT_CONTROLLER.getInstrumentFromIndex(instrumentIndex)
+        promises.push(fetch(correspondingInstrument.path)); //we put a fetch request for each instrument
+    }
+        
+
+    Promise.all(promises) //THE FOLLOWING CODE NEEDS *SOME* REFACTORING
+        /*we need thens because each part of the code returns promises */
+        .then(
+            //we turn the audio files to buffers
+            (data) => {
+                let buffers = [];
+                for (let datum of data)
+                    buffers.push(datum.arrayBuffer());
+                return Promise.all(buffers);
+            }
+        ).then(
+            //we decode the buffers
+            (buffers) => {
+                let samples = [];
+                for (let buffer of buffers)
+                    samples.push(drumAudioContext.decodeAudioData(buffer))
+                return Promise.all(samples);
+            }
+        ).then(
+            //we play the sounds
+            (audioSamples) => {
+                const masterGainNode = drumAudioContext.createGain(); //master gain node
+                masterGainNode.gain.value =MACHINE.masterVolume; //we set master volume here
+
+                let sample_nodes = []
+
+                for (let audioIndex in audioSamples){
+
+                    let instrumentIndex = instrumentsInButtons[MACHINE.subBeat][index][audioIndex] //WIP, we get instrument
+                    let instrument = INSTRUMENT_CONTROLLER.getInstrumentFromIndex(instrumentIndex);
+
+                    let audio = audioSamples[audioIndex]; //specific piece
+                    let track = drumAudioContext.createBufferSource(); //we create the track that will be played
+                    track.buffer = audio;
+
+                    let instrumentGainNode = drumAudioContext.createGain(); //instrument gain mode
+                    instrumentGainNode.gain.value = instrument.getVolume(); //we set instrument volume here
+
+                    track.connect(instrumentGainNode) //putting instrument gain mode in front of track
+                    instrumentGainNode.connect(masterGainNode); //putting masternode in front of instrument node 
+                    sample_nodes.push(track); //push to sample_node
+                }
+
+                masterGainNode.connect(drumAudioContext.destination); //connect to audio context
+
+                for (let beat of sample_nodes)
+                    beat.start(); //playing every sample node at the same time, WIP
+            }
+        )
 }
 
 function deep_copy(obj, msg){ //testing shit
