@@ -27,7 +27,9 @@ const MACHINE = {
     setBasicVariation: function(value) {this.basicVariation = _getBasicVariation(value)},
 
     subBeat: "A",
-    changeSubBeat: function() {this.subBeat = _getOtherSubBeat(this.subBeat) }
+    changeSubBeat: function() {this.subBeat = _getOtherSubBeat(this.subBeat) },
+
+    currentButtonIndex : 0,
 } 
 
 //PRIVATE FUNCTIONS, THEY HELP US CALCULATE STUFF
