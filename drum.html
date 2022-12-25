@@ -399,12 +399,12 @@
                 </div>
 
                 <div class="col-1">
-                    <button class="btn" id="start-button">TAP</button>
+                    <button class="btn" id="tap-button">TAP</button>
                 </div>
             </div>
 
         </div>
-
+        
         <script>
             const drumAudioContext = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -428,6 +428,15 @@
                     : event.preventDefault()
                 })
             }
+
+            document.getElementById("tap-button").addEventListener("click", function(){ //tap buttons selects the current 16th and add the current instrument
+                if (MACHINE.hasStarted){
+                    rhythmCheckboxOnClick(document.querySelectorAll(".rhythm-checkbox")[MACHINE.currentButtonIndex])
+                    playButtonSound(MACHINE.currentButtonIndex)
+                }                 
+                else
+                    event.preventDefault()
+            })
 
             document.getElementById("tempo1").addEventListener("change", function(){ //set tempo
                 MACHINE.setTempo(this.value);
