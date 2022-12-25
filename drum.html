@@ -460,17 +460,20 @@
                     
             })
             
-            document.getElementById("tempo1").value = MACHINE.tempoToInputValue();
-            document.getElementById("master-volume").value = MACHINE.masterVolumeToInputValue();
-            document.getElementById("variation-input").value = MACHINE.basicVariationToInputValue();
-            
-            document.getElementById("instrument-select").value = INSTRUMENT_CONTROLLER.currentInstrumentIndex;
-            document.getElementById("instrument-select").dispatchEvent(new Event("change"));
+            function setUpMachine(){
+                document.getElementById("tempo1").value = MACHINE.tempoToInputValue();
+                document.getElementById("master-volume").value = MACHINE.masterVolumeToInputValue();
+                document.getElementById("variation-input").value = MACHINE.basicVariationToInputValue();
+                document.getElementById("instrument-select").value = INSTRUMENT_CONTROLLER.currentInstrumentIndex;
+                document.getElementById("instrument-select").dispatchEvent(new Event("change"));
+            }
 
+            setUpMachine()
             /*still havent decided whether
                 a) it should be the machine feeding the default values to the UI, or the opposite
                 b) whether the machine object should save the input values or the true data
             */
+
 
         </script>
     </body>
