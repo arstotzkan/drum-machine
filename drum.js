@@ -66,7 +66,6 @@ function circle_lights(){
                 for (let cb of cbs)
                     cb.checked = (instrumentsInButtons[MACHINE.subBeat][index].includes(INSTRUMENT_CONTROLLER.currentInstrumentIndex))
             }
-    
         }
 
         for (let sb of document.querySelectorAll(".subbeat"))
@@ -74,9 +73,8 @@ function circle_lights(){
         
         cbs[index].checked = true; //this is the button whose samples we will play
 
-        if (instrumentsInButtons[MACHINE.subBeat][index].length){ //if there are instruments that have to be played here
+        if (instrumentsInButtons[MACHINE.subBeat][index].length) //if there are instruments that have to be played here
             playButtonSound(index);
-        }
 
        MACHINE.toggle_light_timeout = 
        (cbs[index + 1]) //if we have not reached the final button
