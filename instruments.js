@@ -19,62 +19,7 @@ const INSTRUMENT_CONTROLLER = {
             volumeControlID: "SD-level",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
         },
-        {
-            name: "LT",
-            path: "TR808WAV/LT/LT10.WAV",
-            volumeControlID: "LC-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
-        },
-        {
-            name: "MT",
-            path: "TR808WAV/MT/MT10.WAV",
-            volumeControlID: "MC-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
-        },
-        {
-            name: "HT",
-            path: "TR808WAV/HT/HT10.WAV",
-            volumeControlID: "HC-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
-        },
-        {
-            name: "RS",
-            path: "TR808WAV/RS/RS.WAV",
-            volumeControlID: "CL-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
-        },    
-        {
-            name: "CP",
-            path: "TR808WAV/CP/CP.WAV",
-            volumeControlID: "MA-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
-        },
-        {
-            name: "CB",
-            path: "TR808WAV/CB/CB.WAV",
-            volumeControlID: "CB-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
-        },
-        {
-            name: "CY",
-            path: "TR808WAV/CY/CY1000.WAV",
-            volumeControlID: "CY-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
-        },
-        {
-            name: "OH",
-            path: "TR808WAV/OH/OH10.WAV",
-            volumeControlID: "OH-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
-        },
-        {
-            name: "CH",
-            path: "TR808WAV/CH/CH.WAV",
-            volumeControlID: "CH-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
-        },
-    
-        //UNUSED INSTRUMENTS AS OF NOW
+        //from now on
         {
             name: "LC",
             path: "TR808WAV/LC/LC10.WAV",
@@ -102,6 +47,63 @@ const INSTRUMENT_CONTROLLER = {
         {
             name: "MA",
             path: "TR808WAV/MA/MA.WAV",
+            volumeControlID: "MA-level",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+        },
+        // to now
+        {
+            name: "CB",
+            path: "TR808WAV/CB/CB.WAV",
+            volumeControlID: "CB-level",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+        },
+        {
+            name: "CY",
+            path: "TR808WAV/CY/CY1000.WAV",
+            volumeControlID: "CY-level",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+        },
+        {
+            name: "OH",
+            path: "TR808WAV/OH/OH10.WAV",
+            volumeControlID: "OH-level",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+        },
+        {
+            name: "CH",
+            path: "TR808WAV/CH/CH.WAV",
+            volumeControlID: "CH-level",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+        },
+    
+        //UNUSED INSTRUMENTS AS OF NOW
+        {
+            name: "LT",
+            path: "TR808WAV/LT/LT10.WAV",
+            volumeControlID: "LC-level",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+        },
+        {
+            name: "MT",
+            path: "TR808WAV/MT/MT10.WAV",
+            volumeControlID: "MC-level",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+        },
+        {
+            name: "HT",
+            path: "TR808WAV/HT/HT10.WAV",
+            volumeControlID: "HC-level",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+        },
+        {
+            name: "RS",
+            path: "TR808WAV/RS/RS.WAV",
+            volumeControlID: "CL-level",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+        },    
+        {
+            name: "CP",
+            path: "TR808WAV/CP/CP.WAV",
             volumeControlID: "MA-level",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
         }

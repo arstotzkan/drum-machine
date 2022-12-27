@@ -17,7 +17,7 @@ const MACHINE = {
     toggle_light_timeout: undefined, //this exists only to be able to kill the MACHINE
     killMachine: function(){ clearTimeout(this.toggle_light_timeout)}, //no need to write anything here
 
-    tempo: _calcTempo(1),
+    tempo: _calcTempo(10),
     setTempo: function(value) { this.tempo =  _calcTempo(value) },
     tempoToInputValue: function(){return _tempoToInputValue(this.tempo)},
 

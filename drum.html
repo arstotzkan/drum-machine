@@ -9,6 +9,7 @@
         <script src="instruments.js"></script>
         <script src="drum.js"></script>
         <script src="drumConfig.js"></script>
+        <script src="utils.js"></script>
     </head>
 
     <body>
@@ -145,7 +146,7 @@
                             </div>
 
                             <span><b>L</b>ow<b>C</b>onga</span>
-                            <input type="checkbox" id="LT-checkbox">
+                            <input type="checkbox" id="LT-checkbox" class="instrument-checkbox" data-other-instrument="LC">
                             <span><b>L</b>ow<b>T</b>om</span>
                         </div>
                         <div class="col-1 flex-col justify-content-end align-content-center">
@@ -156,7 +157,7 @@
                             </div>
 
                             <span><b>M</b>id<b>C</b>onga</span>
-                            <input type="checkbox" id="MC-checkbox">
+                            <input type="checkbox" id="MC-checkbox" class="instrument-checkbox" data-other-instrument="MC">
                             <span><b>M</b>id<b>T</b>om</span>
                         </div>
                         <div class="col-1 flex-col justify-content-end align-content-center">
@@ -167,17 +168,17 @@
                             </div>
 
                             <span><b>H</b>i<b>C</b>onga</span>
-                            <input type="checkbox" id="HT-checkbox">
+                            <input type="checkbox" id="HT-checkbox" class="instrument-checkbox" data-other-instrument="HC">
                             <span><b>H</b>i<b>T</b>om</span>
                         </div>
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span><b>CL</b>aves</span>
-                            <input type="checkbox" id="RS-checkbox">
+                            <input type="checkbox" id="RS-checkbox" class="instrument-checkbox" data-other-instrument="CL">
                             <span><b>R</b>im<b>S</b>hot</span>
                         </div>
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span><b>MA</b>racas</span>
-                            <input type="checkbox" id="CP-checkbox">
+                            <input type="checkbox" id="CP-checkbox" class="instrument-checkbox" data-other-instrument="MA">
                             <span>Hand<b>C</b>la<b>p</b></span>
                         </div>
                         <div class="col-1 flex-col justify-content-end align-content-center">
@@ -428,6 +429,18 @@
                 })
             }
 
+            for (let cb of document.querySelectorAll(".instrument-checkbox")){ //toggling checboxes
+                cb.addEventListener("change", function(){
+                    if (INSTRUMENT_CONTROLLER.getCurrentInstrument().name === this.getAttribute("data-other-instrument")){
+                        (this.checked)
+                        ? INSTRUMENT_CONTROLLER.setCurrentInstrument( INSTRUMENT_CONTROLLER.currentInstrumentIndex + 9) //TODO
+                        : INSTRUMENT_CONTROLLER.setCurrentInstrument( INSTRUMENT_CONTROLLER.currentInstrumentIndex - 9); //TODO
+
+                        rhythmCheckboxesOnInstrumentChange(INSTRUMENT_CONTROLLER.currentInstrumentIndex);
+                    }
+                })
+            }
+
             document.getElementById("tap-button").addEventListener("click", function(){ //tap buttons selects the current 16th and add the current instrument
                 if (MACHINE.hasStarted){
                     rhythmCheckboxOnClick(document.querySelectorAll(".rhythm-checkbox")[MACHINE.currentButtonIndex])
@@ -450,13 +463,15 @@
             })
 
             document.getElementById("instrument-select").addEventListener("change", function(){ //set variation
-                INSTRUMENT_CONTROLLER.setCurrentInstrument(this.value)
-                document.getElementById("temp").textContent = INSTRUMENT_CONTROLLER.getCurrentInstrument().name
+                
+                let checkboxID = `${INSTRUMENT_CONTROLLER.getInstrumentFromIndex(Number(this.value) + 9)?.name}-checkbox`;
+                
+                (document.getElementById(checkboxID)?.checked)
+                ? INSTRUMENT_CONTROLLER.setCurrentInstrument(Number(this.value) + 9) //TODO
+                : INSTRUMENT_CONTROLLER.setCurrentInstrument(Number(this.value))
 
-                for (let cb of document.querySelectorAll(".rhythm-checkbox")){
-                    let position = cb.getAttribute("data-position")
-                    cb.checked = (instrumentsInButtons[MACHINE.subBeat][position].includes(this.value));
-                }
+                document.getElementById("temp").textContent = INSTRUMENT_CONTROLLER.getCurrentInstrument().name;
+                rhythmCheckboxesOnInstrumentChange(this.value);
                     
             })
             
