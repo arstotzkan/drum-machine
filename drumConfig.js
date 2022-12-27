@@ -10,6 +10,11 @@ const instrumentsInButtons = {
     [],[],[],[]]
 } //PRIMITIVE WAY I KNOW, WIP
 
+const _startingTempo = _calcTempo(10);
+const _startingMasterVolume = _calcMasterVolume(5);
+const _startingBasicVariation = _getBasicVariation(1);
+const _startingButtonIndex = 0
+
 const MACHINE = {
     //all values are the default ones
     hasStarted : false, //obvious
@@ -17,22 +22,31 @@ const MACHINE = {
     toggle_light_timeout: undefined, //this exists only to be able to kill the MACHINE
     killMachine: function(){ clearTimeout(this.toggle_light_timeout)}, //no need to write anything here
 
-    tempo: _calcTempo(10),
+    tempo: _startingTempo,
     setTempo: function(value) { this.tempo =  _calcTempo(value) },
     tempoToInputValue: function(){return _tempoToInputValue(this.tempo)},
 
-    masterVolume: _calcMasterVolume(5),
+    masterVolume: _startingMasterVolume,
     setMasterVolume: function(value) {this.masterVolume = _calcMasterVolume(value)},
     masterVolumeToInputValue: function(){return _masterVolumeToInputValue(this.masterVolume)},
 
-    basicVariation: _getBasicVariation(1),
+    basicVariation: _startingBasicVariation,
     setBasicVariation: function(value) {this.basicVariation = _getBasicVariation(value)},
     basicVariationToInputValue: function(){return _basicVariationToInputValue(this.basicVariation)},
 
-    subBeat: _getBasicVariation(1),
-    changeSubBeat: function() {this.subBeat = _getOtherSubBeat(this.subBeat) },
+    subBeat: _startingBasicVariation,
+    changeSubBeat: function() {this.subBeat = _getOtherSubBeat(this.subBeat) }, 
+    currentButtonIndex : _startingButtonIndex,
 
-    currentButtonIndex : 0,
+    reset: function(){
+        this.hasStarted = false
+        this.toggle_light_timeout = undefined
+        this.tempo = _startingTempo
+        this.masterVolume = _startingMasterVolume
+        this.basicVariation = _startingBasicVariation
+        this.subBeat = _startingBasicVariation
+        this.currentButtonIndex = _startingButtonIndex
+    }
 } 
 
 //PRIVATE FUNCTIONS, THEY HELP US CALCULATE STUFF

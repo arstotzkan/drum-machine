@@ -1,3 +1,5 @@
+const _startingInstrumentIndex = 1
+
 const INSTRUMENT_CONTROLLER = {
     /*An array of all possible instruments, and a way to store all relevant Data */
     instruments : [
@@ -109,10 +111,14 @@ const INSTRUMENT_CONTROLLER = {
         }
     ],
 
-    currentInstrumentIndex: 1, //current instrument selected
+    currentInstrumentIndex: _startingInstrumentIndex, //current instrument selected
     setCurrentInstrument: function (value){this.currentInstrumentIndex = value;},
     getCurrentInstrument: function(){return this.instruments[this.currentInstrumentIndex];}, //returns the instrument object from the array
-    getInstrumentFromIndex: function(index){return this.instruments[index];}
+    getInstrumentFromIndex: function(index){return this.instruments[index];},
+
+    reset: function(){
+        this.setCurrentInstrument(_startingInstrumentIndex)
+    }
 }
 
 function _getInstrumentVolume(instrumentVolumeControl){ //helper private function
