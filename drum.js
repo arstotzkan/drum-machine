@@ -71,7 +71,7 @@ function circle_lights(){
         for (let sb of document.querySelectorAll(".subbeat"))
             sb.checked = (sb.id === `subbeat-checkbox-${MACHINE.subBeat}`) //subbeat lights
         
-        cbs[index].checked = true; //this is the button whose samples we will play
+        cbs[index].checked = !(cbs[index].checked); //this is the button whose samples we will play
 
         if (instrumentsInButtons[MACHINE.subBeat][index].length) //if there are instruments that have to be played here
             playButtonSound(index);
