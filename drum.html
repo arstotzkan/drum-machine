@@ -279,8 +279,10 @@
             </div>
 
             <div class="row col-12">
-                <div class="col-2">
+                <div class="col-2 flex-col justify-content-center align-content-center">
                     <button class="btn" id="start-button">START/STOP</button>
+                    <br>
+                    <button class="btn" id="reset-button">RESET</button>
                 </div>
 
                 <div class="col-1 flex-col justify-content-end">
@@ -448,6 +450,14 @@
                 }                 
                 else
                     event.preventDefault()
+            })
+
+            document.getElementById("reset-button").addEventListener("click", function(){
+                if (window.confirm("Reset?")){
+                    reset();
+                    setUpMachine();
+                }
+                    
             })
 
             document.getElementById("tempo1").addEventListener("change", function(){ //set tempo
