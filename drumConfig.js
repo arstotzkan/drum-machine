@@ -10,7 +10,7 @@ const instrumentsInButtons = {
     [],[],[],[]]
 } //PRIMITIVE WAY I KNOW, WIP
 
-const _startingTempo = _calcTempo(10);
+const _startingTempo = _calcTempo(10.0);
 const _startingMasterVolume = _calcMasterVolume(5);
 const _startingBasicVariation = _getBasicVariation(1);
 const _startingButtonIndex = 0
