@@ -10,7 +10,8 @@ const instrumentsInButtons = {
     [],[],[],[]]
 } //PRIMITIVE WAY I KNOW, WIP
 
-const _startingTempo = _calcTempo(10.0);
+const _startingPartsPerBeat = _getPartsPerBeat(2);
+const _startingTempo = _calcTempo(10.0, _startingPartsPerBeat);
 const _startingMasterVolume = _calcMasterVolume(5);
 const _startingBasicVariation = _getBasicVariation(1);
 const _startingButtonIndex = 0
@@ -23,8 +24,13 @@ const MACHINE = {
     killMachine: function(){ clearTimeout(this.toggle_light_timeout)}, //no need to write anything here
 
     tempo: _startingTempo,
-    setTempo: function(value) { this.tempo =  _calcTempo(value) },
-    tempoToInputValue: function(){return _tempoToInputValue(this.tempo)},
+    setTempo: function(value) { this.tempo =  _calcTempo(value, this.partsPerBeat) },
+    tempoToInputValue: function(){return _tempoToInputValue(this.tempo, this.partsPerBeat)},
+
+    partsPerBeat: _startingPartsPerBeat,
+    setPartsPerBeat: function(newVal){ this.partsPerBeat = _getPartsPerBeat(newVal)},
+    partsPerBeatToInputValue: function(){return _partsPerBeatToInputValue(this.partsPerBeat)},
+
 
     masterVolume: _startingMasterVolume,
     setMasterVolume: function(value) {this.masterVolume = _calcMasterVolume(value)},
@@ -50,12 +56,17 @@ const MACHINE = {
 } 
 
 //PRIVATE FUNCTIONS, THEY HELP US CALCULATE STUFF
-function _calcTempo(value){
-    return 1000 - ( 90 * value);
+function _calcTempo(value, partsPerBeat){
+    return 1000 / ( value * 16 / (6 * partsPerBeat)  )
 }
 
-function _tempoToInputValue(tempo){
-    return (1000 - tempo ) / 90
+function _getPartsPerBeat(inputVal){
+    let map = [8,4,6,3] //[3,6,4,8];
+    return map[inputVal];
+}
+
+function _tempoToInputValue(tempo, partsPerBeat){
+    return (1000 * 6 * partsPerBeat) / (tempo * 16)
 }
 
 function _calcMasterVolume(value){
@@ -68,6 +79,19 @@ function _masterVolumeToInputValue(value){
 
 function _getBasicVariation(value){
     return ["A", "AB", "B"][value - 1];
+}
+
+function _partsPerBeatToInputValue(value){
+    switch(value){
+        case 3:
+            return 3;
+        case 6:
+            return 2;       
+        case 4:
+            return 1;
+        case 8:
+            return 0;  
+    }
 }
 
 function _basicVariationToInputValue(value){

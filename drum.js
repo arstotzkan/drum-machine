@@ -49,7 +49,6 @@ function circle_lights(){
     toggle_light(0) //we begin from first button 
 
     function toggle_light(index){
-
         MACHINE.currentButtonIndex = index;
 
         if (index > 0) //if the circle has not yet ended
