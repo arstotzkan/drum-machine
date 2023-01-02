@@ -13,32 +13,44 @@ const INSTRUMENT_CONTROLLER = {
             name: "BD",
             path:  "TR808WAV/BD/BD1000.WAV",
             volumeControlID: "BD-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            toneControlID: "BD-tone",
+            decayControlID: "BD-decay",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
+            getTone: function(){ return _getInstrumentTone(this.toneControlID);},
+            getDecay: function(){ return _getInstrumentDecay(this.decayControlID); } 
         },
         {
             name: "SD",
             path: "TR808WAV/SD/SD1000.WAV",
             volumeControlID: "SD-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            toneControlID: "SD-tone",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
+            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
         //from now on
         {
             name: "LC",
             path: "TR808WAV/LC/LC10.WAV",
             volumeControlID: "LC-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            toneControlID: "LC-tuning",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
+            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
         {
             name: "MC",
             path: "TR808WAV/MC/MC10.WAV",
             volumeControlID: "MC-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            toneControlID: "MC-tuning",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
+            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
         {
             name: "HC",
             path: "TR808WAV/HC/HC10.WAV",
             volumeControlID: "HC-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            toneControlID: "HC-tuning",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
+            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
         {
             name: "CL",
@@ -63,13 +75,19 @@ const INSTRUMENT_CONTROLLER = {
             name: "CY",
             path: "TR808WAV/CY/CY1000.WAV",
             volumeControlID: "CY-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            toneControlID: "CY-tone",
+            decayControlID: "CY-decay",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
+            getTone: function(){ return _getInstrumentTone(this.toneControlID);},
+            getDecay: function(){ return _getInstrumentDecay(this.decayControlID); } 
         },
         {
             name: "OH",
             path: "TR808WAV/OH/OH10.WAV",
             volumeControlID: "OH-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            decayControlID: "OH-decay",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+            getDecay: function(){ return _getInstrumentDecay(this.decayControlID); } 
         },
         {
             name: "CH",
@@ -83,19 +101,25 @@ const INSTRUMENT_CONTROLLER = {
             name: "LT",
             path: "TR808WAV/LT/LT10.WAV",
             volumeControlID: "LC-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            toneControlID: "LC-tuning",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
+            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
         {
             name: "MT",
             path: "TR808WAV/MT/MT10.WAV",
             volumeControlID: "MC-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            toneControlID: "MC-tuning",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
+            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
         {
             name: "HT",
             path: "TR808WAV/HT/HT10.WAV",
             volumeControlID: "HC-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            toneControlID: "HC-tuning",
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
+            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
         {
             name: "RS",
@@ -124,4 +148,14 @@ const INSTRUMENT_CONTROLLER = {
 function _getInstrumentVolume(instrumentVolumeControl){ //helper private function
     let instrumentLevel = document.getElementById(instrumentVolumeControl);
     return (instrumentLevel.value / 10)
+}
+
+function _getInstrumentDecay(instrumentDecayControl){
+    let instrumentDecay = document.getElementById(instrumentDecayControl);
+    return (instrumentDecay.value)
+}
+
+function _getInstrumentTone(instrumentToneControl){
+    let instrumentTone = document.getElementById(instrumentToneControl);
+    return ((instrumentTone.value*0.35)+0.1) // the range of values ends up being ([0.45 - 3.95] for x=[1, 11]) 
 }
