@@ -6,7 +6,7 @@ function rhythmCheckboxesOnInstrumentChange(newInstrumentValue){
 }
 
 function drumMachineReset(){
-    for (let attr in instrumentsInButtons){//maybe we could move this to the reset button once that is made
+    for (let attr in instrumentsInButtons){
         for (let inst in instrumentsInButtons[attr]){
             instrumentsInButtons[attr][inst] = [];
         }
