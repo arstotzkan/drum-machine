@@ -86,7 +86,7 @@ function playButtonSound(index){
 
     for (let instrumentIndex of instrumentsInButtons[MACHINE.subBeat][index]){
         let correspondingInstrument = INSTRUMENT_CONTROLLER.getInstrumentFromIndex(instrumentIndex)
-        promises.push(fetch(correspondingInstrument.path)); //we put a fetch request for each instrument
+        promises.push(fetch(correspondingInstrument.getPath())); //we put a fetch request for each instrument
     }
         
 
@@ -127,9 +127,14 @@ function playButtonSound(index){
 
                     let instrumentGainNode = drumAudioContext.createGain(); //instrument gain mode
                     
-                    if (instrument.getTone){
-                        track.playbackRate.value = instrument.getTone();
-                    }
+                    // if (instrument.getTone){
+                    //     track.playbackRate.value = instrument.getTone();
+                    // }
+
+                    // if(instrument.getDecay){
+                    //     track.detune.value = instrument.getDecay();
+                    // }
+
                     instrumentGainNode.gain.value = instrument.getVolume(); //we set instrument volume here
 
                     track.connect(instrumentGainNode) //putting instrument gain mode in front of track

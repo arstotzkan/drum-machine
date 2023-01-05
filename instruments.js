@@ -5,133 +5,149 @@ const INSTRUMENT_CONTROLLER = {
     instruments : [
         {
             name: "AC",
-            path: "",
             volumeControlID: "AC-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+            getPath: function(){return ""}
         },
         {
             name: "BD",
-            path:  "TR808WAV/BD/BD1000.WAV",
             volumeControlID: "BD-level",
             toneControlID: "BD-tone",
             decayControlID: "BD-decay",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            getTone: function(){ return _getInstrumentTone(this.toneControlID);},
-            getDecay: function(){ return _getInstrumentDecay(this.decayControlID); } 
+            
+            getTone: function(){ return _getAudioParameterValue(this.toneControlID);},
+            getDecay: function(){ return _getAudioParameterValue(this.decayControlID); },
+            getPath: function(){return _getSamplePath(this.name, this.getTone(), this.getDecay())}
         },
         {
             name: "SD",
-            path: "TR808WAV/SD/SD1000.WAV",
             volumeControlID: "SD-level",
             toneControlID: "SD-tone",
+            snappyControlID: "SD-snappy",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
+
+            getTone: function(){ return _getAudioParameterValue(this.toneControlID);},
+            getSnappy: function(){ return _getAudioParameterValue(this.snappyControlID); },
+            getPath: function(){return _getSamplePath(this.name, this.getTone(), this.getSnappy())}
         },
         //from now on
         {
             name: "LC",
-            path: "TR808WAV/LC/LC10.WAV",
             volumeControlID: "LC-level",
-            toneControlID: "LC-tone",
+            tuningControlID: "LC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
+
+            getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
+            getPath: function(){return _getSamplePath(this.name, this.getTuning())}
         },
         {
             name: "MC",
-            path: "TR808WAV/MC/MC10.WAV",
             volumeControlID: "MC-level",
-            toneControlID: "MC-tone",
+            tuningControlID: "MC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
+
+            getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
+            getPath: function(){return _getSamplePath(this.name, this.getTuning())}
         },
         {
             name: "HC",
-            path: "TR808WAV/HC/HC10.WAV",
             volumeControlID: "HC-level",
-            toneControlID: "HC-tone",
+            tuningControlID: "HC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
+
+            getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
+            getPath: function(){return _getSamplePath(this.name, this.getTuning())}
         },
         {
             name: "CL",
-            path: "TR808WAV/CL/CL.WAV",
             volumeControlID: "CL-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+            getPath: function(){return _getSamplePath(this.name)}
+
         },    
         {
             name: "MA",
-            path: "TR808WAV/MA/MA.WAV",
             volumeControlID: "MA-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
-        },
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+            getPath: function(){return _getSamplePath(this.name)}},
         // to now
         {
             name: "CB",
-            path: "TR808WAV/CB/CB.WAV",
             volumeControlID: "CB-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+            getPath: function(){return _getSamplePath(this.name)}
         },
         {
             name: "CY",
-            path: "TR808WAV/CY/CY1000.WAV",
             volumeControlID: "CY-level",
             toneControlID: "CY-tone",
             decayControlID: "CY-decay",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            getTone: function(){ return _getInstrumentTone(this.toneControlID);},
-            getDecay: function(){ return _getInstrumentDecay(this.decayControlID); } 
+            
+            getTone: function(){ return _getAudioParameterValue(this.toneControlID);},
+            getDecay: function(){ return _getAudioParameterValue(this.decayControlID); },
+            getPath: function(){return _getSamplePath(this.name, this.getTone(), this.getDecay())}
         },
         {
             name: "OH",
-            path: "TR808WAV/OH/OH10.WAV",
             volumeControlID: "OH-level",
             decayControlID: "OH-decay",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
-            getDecay: function(){ return _getInstrumentDecay(this.decayControlID); } 
+
+            getDecay: function(){ return _getAudioParameterValue(this.decayControlID); }, 
+            getPath: function(){return _getSamplePath(this.name, this.getDecay())}
         },
         {
             name: "CH",
-            path: "TR808WAV/CH/CH.WAV",
             volumeControlID: "CH-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+
+            getPath: function(){return _getSamplePath(this.name)}
         },
     
-        //UNUSED INSTRUMENTS AS OF NOW
         {
             name: "LT",
-            path: "TR808WAV/LT/LT10.WAV",
             volumeControlID: "LC-level",
-            toneControlID: "LC-tone",
+            tuningControlID: "LC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
+
+            getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
+            getPath: function(){return _getSamplePath(this.name, this.getTuning())}
         },
         {
             name: "MT",
-            path: "TR808WAV/MT/MT10.WAV",
             volumeControlID: "MC-level",
-            toneControlID: "MC-tone",
+            tuningControlID: "MC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
+
+            getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
+            getPath: function(){return _getSamplePath(this.name, this.getTuning())}
+
         },
         {
             name: "HT",
-            path: "TR808WAV/HT/HT10.WAV",
             volumeControlID: "HC-level",
-            toneControlID: "HC-tone",
+            tuningControlID: "HC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            getTone: function(){ return _getInstrumentTone(this.toneControlID);}
+
+            getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
+            getPath: function(){return _getSamplePath(this.name, this.getTuning())}
         },
         {
             name: "RS",
-            path: "TR808WAV/RS/RS.WAV",
             volumeControlID: "CL-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+
+            getPath: function(){return _getSamplePath(this.name)}
+
         },    
         {
             name: "CP",
-            path: "TR808WAV/CP/CP.WAV",
             volumeControlID: "MA-level",
-            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); }
+            getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+
+            getPath: function(){return _getSamplePath(this.name)}
         }
     ],
 
@@ -150,12 +166,36 @@ function _getInstrumentVolume(instrumentVolumeControl){ //helper private functio
     return (instrumentLevel.value / 10)
 }
 
-function _getInstrumentDecay(instrumentDecayControl){
-    let instrumentDecay = document.getElementById(instrumentDecayControl);
-    return (instrumentDecay.value)
+// function _getInstrumentDecay(instrumentDecayControl){
+//     let instrumentDecay = document.getElementById(instrumentDecayControl);
+//     return (instrumentDecay.value)
+// }
+
+// function _getInstrumentTone(instrumentToneControl){
+//     let instrumentTone = document.getElementById(instrumentToneControl);
+//     return ((instrumentTone.value*0.35)+0.1) // the range of values ends up being ([0.45 - 3.95] for x=[1, 11]) 
+// }
+
+function _getSamplePath( instrumentName, param1= "", param2 =""){
+    console.log(`TR808WAV/${instrumentName}/${instrumentName}${param1}${param2}.WAV`);
+    return `TR808WAV/${instrumentName}/${instrumentName}${param1}${param2}.WAV`
 }
 
-function _getInstrumentTone(instrumentToneControl){
-    let instrumentTone = document.getElementById(instrumentToneControl);
-    return ((instrumentTone.value*0.35)+0.1) // the range of values ends up being ([0.45 - 3.95] for x=[1, 11]) 
+//helper function 
+function _getAudioParameterValue(inputId){
+    let val = document.getElementById(inputId)?.value
+
+    switch(Number(val)){
+        case 0:
+            return "00";
+        case 2.5:
+            return "25";
+        case 5:
+            return "50";
+        case 7.5:
+            return "75";
+        case 10:
+            return "10";
+    }
+        
 }
