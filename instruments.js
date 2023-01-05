@@ -32,7 +32,7 @@ const INSTRUMENT_CONTROLLER = {
             name: "LC",
             path: "TR808WAV/LC/LC10.WAV",
             volumeControlID: "LC-level",
-            toneControlID: "LC-tuning",
+            toneControlID: "LC-tone",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
             getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
@@ -40,7 +40,7 @@ const INSTRUMENT_CONTROLLER = {
             name: "MC",
             path: "TR808WAV/MC/MC10.WAV",
             volumeControlID: "MC-level",
-            toneControlID: "MC-tuning",
+            toneControlID: "MC-tone",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
             getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
@@ -48,7 +48,7 @@ const INSTRUMENT_CONTROLLER = {
             name: "HC",
             path: "TR808WAV/HC/HC10.WAV",
             volumeControlID: "HC-level",
-            toneControlID: "HC-tuning",
+            toneControlID: "HC-tone",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
             getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
@@ -101,7 +101,7 @@ const INSTRUMENT_CONTROLLER = {
             name: "LT",
             path: "TR808WAV/LT/LT10.WAV",
             volumeControlID: "LC-level",
-            toneControlID: "LC-tuning",
+            toneControlID: "LC-tone",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
             getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
@@ -109,7 +109,7 @@ const INSTRUMENT_CONTROLLER = {
             name: "MT",
             path: "TR808WAV/MT/MT10.WAV",
             volumeControlID: "MC-level",
-            toneControlID: "MC-tuning",
+            toneControlID: "MC-tone",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
             getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
@@ -117,7 +117,7 @@ const INSTRUMENT_CONTROLLER = {
             name: "HT",
             path: "TR808WAV/HT/HT10.WAV",
             volumeControlID: "HC-level",
-            toneControlID: "HC-tuning",
+            toneControlID: "HC-tone",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
             getTone: function(){ return _getInstrumentTone(this.toneControlID);}
         },
