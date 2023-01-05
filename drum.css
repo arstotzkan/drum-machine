@@ -19,13 +19,15 @@ body{
 
 .btn{
     width: 50%;
-    background-color: #a1a100;
+    background-color: #d3cb58;
     color: #101010;
     border: 0;
+    transition:background-color .2s ease-in;
 }
 
 .btn:hover{
-    background-color: #c3c322;
+    background-color: #ffe600;
+    
 }
 
 /*MUST SIMPLIFY*/
@@ -70,4 +72,38 @@ body{
 input[type=range][orient=vertical]{
     -webkit-appearance: slider-vertical;
     height: 4rem;
+}
+
+/* The slider itself */
+input[type=range] {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    height: 15px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+  
+/* Mouse-over effects */
+input[type=range]:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+  
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    background: rgba(223, 61, 33, 0.925);
+    cursor: pointer; /* Cursor on hover */
+}
+  
+input[type=range]::-moz-range-thumb {
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    background: rgba(223, 61, 33, 0.925);
+    cursor: pointer; /* Cursor on hover */
 }
