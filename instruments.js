@@ -166,18 +166,8 @@ function _getInstrumentVolume(instrumentVolumeControl){ //helper private functio
     return (instrumentLevel.value / 10)
 }
 
-// function _getInstrumentDecay(instrumentDecayControl){
-//     let instrumentDecay = document.getElementById(instrumentDecayControl);
-//     return (instrumentDecay.value)
-// }
-
-// function _getInstrumentTone(instrumentToneControl){
-//     let instrumentTone = document.getElementById(instrumentToneControl);
-//     return ((instrumentTone.value*0.35)+0.1) // the range of values ends up being ([0.45 - 3.95] for x=[1, 11]) 
-// }
 
 function _getSamplePath( instrumentName, param1= "", param2 =""){
-    console.log(`TR808WAV/${instrumentName}/${instrumentName}${param1}${param2}.WAV`);
     return `TR808WAV/${instrumentName}/${instrumentName}${param1}${param2}.WAV`
 }
 
@@ -198,4 +188,9 @@ function _getAudioParameterValue(inputId){
             return "10";
     }
         
+}
+
+function _getInstrumentPlaybackRate(instrumentPlaybackRateControl){
+    let instrumentTone = document.getElementById(instrumentPlaybackRateControl);
+    return ((instrumentTone.value*0.35)+0.1) // the range of values ends up being ([0.45 - 3.95] for x=[1, 11]) 
 }
