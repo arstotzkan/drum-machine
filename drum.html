@@ -146,7 +146,7 @@
                             </div>
 
                             <span><b>L</b>ow<b>C</b>onga</span>
-                            <input type="checkbox" id="LT-checkbox" class="instrument-checkbox" data-other-instrument="LC">
+                            <input type="checkbox" id="LT-checkbox" class="instrument-checkbox" data-instrument-index="3">
                             <span><b>L</b>ow<b>T</b>om</span>
                         </div>
                         <div class="col-1 flex-col justify-content-end align-content-center">
@@ -157,7 +157,7 @@
                             </div>
 
                             <span><b>M</b>id<b>C</b>onga</span>
-                            <input type="checkbox" id="MC-checkbox" class="instrument-checkbox" data-other-instrument="MC">
+                            <input type="checkbox" id="MC-checkbox" class="instrument-checkbox" data-instrument-index="4">
                             <span><b>M</b>id<b>T</b>om</span>
                         </div>
                         <div class="col-1 flex-col justify-content-end align-content-center">
@@ -168,17 +168,17 @@
                             </div>
 
                             <span><b>H</b>i<b>C</b>onga</span>
-                            <input type="checkbox" id="HT-checkbox" class="instrument-checkbox" data-other-instrument="HC">
+                            <input type="checkbox" id="HT-checkbox" class="instrument-checkbox" data-instrument-index="5">
                             <span><b>H</b>i<b>T</b>om</span>
                         </div>
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span><b>CL</b>aves</span>
-                            <input type="checkbox" id="RS-checkbox" class="instrument-checkbox" data-other-instrument="CL">
+                            <input type="checkbox" id="RS-checkbox" class="instrument-checkbox" data-instrument-index="6">
                             <span><b>R</b>im<b>S</b>hot</span>
                         </div>
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span><b>MA</b>racas</span>
-                            <input type="checkbox" id="CP-checkbox" class="instrument-checkbox" data-other-instrument="MA">
+                            <input type="checkbox" id="CP-checkbox" class="instrument-checkbox" data-instrument-index="7">
                             <span>Hand<b>C</b>la<b>p</b></span>
                         </div>
                         <div class="col-1 flex-col justify-content-end align-content-center">
@@ -433,7 +433,9 @@
 
             for (let cb of document.querySelectorAll(".instrument-checkbox")){ //toggling checboxes
                 cb.addEventListener("change", function(){
-                    if (INSTRUMENT_CONTROLLER.getCurrentInstrument().name === this.getAttribute("data-other-instrument")){
+                    if (INSTRUMENT_CONTROLLER.currentInstrumentIndex === Number(this.getAttribute("data-instrument-index"))
+                        || INSTRUMENT_CONTROLLER.currentInstrumentIndex === Number(this.getAttribute("data-instrument-index")) + 9){
+                            
                         (this.checked)
                         ? INSTRUMENT_CONTROLLER.setCurrentInstrument( INSTRUMENT_CONTROLLER.currentInstrumentIndex + 9) //TODO
                         : INSTRUMENT_CONTROLLER.setCurrentInstrument( INSTRUMENT_CONTROLLER.currentInstrumentIndex - 9); //TODO
@@ -485,7 +487,6 @@
             
             document.getElementById("variation-input").addEventListener("change", function(){ //set variation
                 MACHINE.setBasicVariation(Number(this.value));
-
             })
 
             document.getElementById("instrument-select").addEventListener("change", function(){ //set variation
