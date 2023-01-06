@@ -6,16 +6,19 @@ const INSTRUMENT_CONTROLLER = {
         {
             name: "AC",
             volumeControlID: "AC-level",
+            pitchControlID: "AC-pitch",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getPath: function(){return ""}
         },
         {
             name: "BD",
             volumeControlID: "BD-level",
+            pitchControlID: "BD-pitch",
             toneControlID: "BD-tone",
             decayControlID: "BD-decay",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getTone: function(){ return _getAudioParameterValue(this.toneControlID);},
             getDecay: function(){ return _getAudioParameterValue(this.decayControlID); },
             getPath: function(){return _getSamplePath(this.name, this.getTone(), this.getDecay())}
@@ -23,10 +26,11 @@ const INSTRUMENT_CONTROLLER = {
         {
             name: "SD",
             volumeControlID: "SD-level",
+            pitchControlID: "SD-pitch",
             toneControlID: "SD-tone",
             snappyControlID: "SD-snappy",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getTone: function(){ return _getAudioParameterValue(this.toneControlID);},
             getSnappy: function(){ return _getAudioParameterValue(this.snappyControlID); },
             getPath: function(){return _getSamplePath(this.name, this.getTone(), this.getSnappy())}
@@ -35,56 +39,65 @@ const INSTRUMENT_CONTROLLER = {
         {
             name: "LC",
             volumeControlID: "LC-level",
+            pitchControlID: "LC-pitch",
             tuningControlID: "LC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
             getPath: function(){return _getSamplePath(this.name, this.getTuning())}
         },
         {
             name: "MC",
             volumeControlID: "MC-level",
+            pitchControlID: "MC-pitch",
             tuningControlID: "MC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
             getPath: function(){return _getSamplePath(this.name, this.getTuning())}
         },
         {
             name: "HC",
             volumeControlID: "HC-level",
+            pitchControlID: "HC-pitch",
             tuningControlID: "HC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
             getPath: function(){return _getSamplePath(this.name, this.getTuning())}
         },
         {
             name: "CL",
             volumeControlID: "CL-level",
+            pitchControlID: "CL-pitch",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getPath: function(){return _getSamplePath(this.name)}
-
         },    
         {
             name: "MA",
             volumeControlID: "MA-level",
+            pitchControlID: "MA-pitch",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getPath: function(){return _getSamplePath(this.name)}},
         // to now
         {
             name: "CB",
             volumeControlID: "CB-level",
+            pitchControlID: "CB-pitch",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getPath: function(){return _getSamplePath(this.name)}
         },
         {
             name: "CY",
             volumeControlID: "CY-level",
+            pitchControlID: "CY-pitch",
             toneControlID: "CY-tone",
             decayControlID: "CY-decay",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-            
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getTone: function(){ return _getAudioParameterValue(this.toneControlID);},
             getDecay: function(){ return _getAudioParameterValue(this.decayControlID); },
             getPath: function(){return _getSamplePath(this.name, this.getTone(), this.getDecay())}
@@ -92,35 +105,39 @@ const INSTRUMENT_CONTROLLER = {
         {
             name: "OH",
             volumeControlID: "OH-level",
+            pitchControlID: "OH-pitch",
             decayControlID: "OH-decay",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getDecay: function(){ return _getAudioParameterValue(this.decayControlID); }, 
             getPath: function(){return _getSamplePath(this.name, this.getDecay())}
         },
         {
             name: "CH",
             volumeControlID: "CH-level",
+            pitchControlID: "CH-pitch",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getPath: function(){return _getSamplePath(this.name)}
         },
     
         {
             name: "LT",
             volumeControlID: "LC-level",
+            pitchControlID: "LC-pitch",
             tuningControlID: "LC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
             getPath: function(){return _getSamplePath(this.name, this.getTuning())}
         },
         {
             name: "MT",
             volumeControlID: "MC-level",
+            pitchControlID: "MC-pitch",
             tuningControlID: "MC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
             getPath: function(){return _getSamplePath(this.name, this.getTuning())}
 
@@ -128,25 +145,28 @@ const INSTRUMENT_CONTROLLER = {
         {
             name: "HT",
             volumeControlID: "HC-level",
+            pitchControlID: "HC-pitch",
             tuningControlID: "HC-tuning",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID);},
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getTuning: function(){ return _getAudioParameterValue(this.tuningControlID);},
             getPath: function(){return _getSamplePath(this.name, this.getTuning())}
         },
         {
             name: "RS",
             volumeControlID: "CL-level",
+            pitchControlID: "CL-pitch",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getPath: function(){return _getSamplePath(this.name)}
 
         },    
         {
             name: "CP",
             volumeControlID: "MA-level",
+            pitchControlID: "MA-pitch",
             getVolume: function(){ return _getInstrumentVolume(this.volumeControlID); },
-
+            getPitch: function(){ return _getInstrumentPitch(this.pitchControlID); },
             getPath: function(){return _getSamplePath(this.name)}
         }
     ],
@@ -190,7 +210,9 @@ function _getAudioParameterValue(inputId){
         
 }
 
-function _getInstrumentPlaybackRate(instrumentPlaybackRateControl){
-    let instrumentTone = document.getElementById(instrumentPlaybackRateControl);
-    return ((instrumentTone.value*0.35)+0.1) // the range of values ends up being ([0.45 - 3.95] for x=[1, 11]) 
+function _getInstrumentPitch(instrumentPitchID){
+    let pitchElem = document.getElementById(instrumentPitchID);
+    //return ((( Number(pitchElem.value) + 1)*0.35)+0.1) // the range of values ends up being ([0.45 - 3.95] for x=[0, 10]) 
+    let pitches = [ 0.25 ,0.40, 0.55, 0.70, 0.85, 1, 1.5 , 2, 2.5, 3, 3.5]
+    return (pitches[pitchElem.value])
 }

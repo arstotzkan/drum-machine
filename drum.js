@@ -127,13 +127,9 @@ function playButtonSound(index){
 
                     let instrumentGainNode = drumAudioContext.createGain(); //instrument gain mode
                     
-                    // if (instrument.getTone){
-                    //     track.playbackRate.value = instrument.getTone();
-                    // }
-
-                    // if(instrument.getDecay){
-                    //     track.detune.value = instrument.getDecay();
-                    // }
+                    if (instrument.getPitch){
+                        track.playbackRate.value = instrument.getPitch();
+                    }
 
                     instrumentGainNode.gain.value = instrument.getVolume(); //we set instrument volume here
 
