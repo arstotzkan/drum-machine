@@ -21,34 +21,18 @@
             </div>
 
             <div class="row">
-                <div class="col-1">
-                    <span>PATTERN WRITE</span>
-                    <input id="pattern-write" class="w-100" type="range" min="1" max="11" value="1" step="1">
-                </div>
                 
-                <div class="col-2 flex-col justify-content-end align-content-center">
+                
+                <div class="col-2 flex-col justify-content-center align-content-center">
                     <div class="flex-col justify-content-end align-content-center">
                         <span>INSTRUMENT SELECT</span> 
                         <span id="temp"></span> <!--ADDED THIS HERE SO I CAN SEE THE INSTRUMENT SELECTED -->
-                        <input id="instrument-select" type="range" min="0" max="11" value="0" step="1">
+                        <input id="instrument-select" type="range" min="1" max="11" value="1" step="1">
                     </div>
-
-                    <div class="flex-col justify-content-end align-content-center">
-                        <input id="autofill-in" type="range" min="1" max="6" value="1" step="1">
-                        <span>AUTOFILL IN</span>
-                    </div>
-
                 </div>
 
-                <div class="col-9 row align-content-end">
+                <div class="col-10 row align-content-end" id="instruments">
                     <div class="row col-12">
-                        <div class="col-1 flex-col justify-content-end align-content-center">
-                            <span>LEVEL</span>
-                            <input id="AC-level" class="w-90" type="range" min="0" max="10" value="5" step="1">
-
-                            <span>PITCH</span>
-                            <input id="AC-pitch" class="w-90" type="range" min="0" max="10" value="5" step="1">
-                        </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
                             <span>LEVEL</span>
@@ -140,9 +124,6 @@
                     </div>
 
                     <div class="row col-12">
-                        <div class="col-1 flex-col justify-content-end align-content-center">
-                            <span><b>AC</b>Cent</span>
-                        </div>
 
                         <div class="col-1 flex-col justify-content-end align-content-center">
 
@@ -291,50 +272,39 @@
                     </div>
                 </div>
 
-                <div class="col-9 row">
-                    <div class="col-2">
+                <div class="col-10 row">
+                    <div class="col-2 flex-col align-content-end">
                         <span>PRE-SCALE</span>
                         <input id="pre-scale" orient="vertical" type="range" min="0" max="3" value="1" step="1">
                     </div>
 
-                    <div class="col-10 flex-col justify-content-end"> 
+                    <div class="col-9 flex-col justify-content-end"> 
                         <div class="mx-1">
                             <div class="row col-12 gray"> 3/16 PER BEAT</div>
                             <div class="row col-12 gray"> 6/16 PER BEAT</div>
                             <div class="row col-12 gray"> 4/16 PER BEAT</div>
                             <div class="row col-12 gray"> 8/16 PER BEAT</div>
                         </div>
+                        
+                    </div>
+                    <div class="col-1 flex-col justify-content-center align-content-center">
+                        <button class="btn" id="tap-button">TAP</button>
                     </div>
 
                 </div>
                 
-                <div class="col-1 gray">
-                    <div class="row col-12"><span>I-F VARIATION</span> </div>
-                    <div class="row col-12"><input id="i-f-variation-checkbox" type="checkbox"></div>
-                </div>
             </div>
 
             <div class="row col-12">
-                <div class="col-2 flex-col justify-content-center align-content-center">
+                <div class="col-2 flex-col justify-content-center align-content-center my-1">
                     <button class="btn" id="start-button">START/STOP</button>
                     <br>
                     <button class="btn" id="reset-button">RESET</button>
                 </div>
 
-                <div class="col-1 flex-col justify-content-end">
-                    <div class="h-50 flex-col justify-content-end">
-                        <input type="checkbox" disabled>
-                        <span>1st PART</span>
-                    </div>
 
-                    <div class="h-50 flex-col justify-content-end">
-                        <input type="checkbox" disabled>
-                        <span>2nd PART</span>
-                    </div>
-                </div>
-
-                <div class="col-8 row my-1">
-                    <div class="col-9 row">
+                <div class="col-10 row my-1">
+                    <div class="col-8 row">
                         <div class="col-1">
                             <button class="rhythm-button rhythm-button-orangered ">
                                 <input type="checkbox" class="rhythm-checkbox" data-position="0">
@@ -435,10 +405,6 @@
                             </button>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-1">
-                    <button class="btn" id="tap-button">TAP</button>
                 </div>
             </div>
 
